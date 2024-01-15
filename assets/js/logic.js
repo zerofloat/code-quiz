@@ -4,9 +4,11 @@ var startScreen = document.getElementById("start-screen");
 var questionScreen = document.getElementById("questions");
 var startButton = document.getElementById("start");
 var choices = document.getElementById("choices");
-// placeholder:
+var questionEl = document.getElementById("question-title");
+
+// placeholders:
 var answerEl = "";
-var questionNum = 4;
+var questionNum = 1;
 
 function startQuiz() {
     startScreen.classList.replace("start", "hide");
@@ -15,16 +17,18 @@ function startQuiz() {
 
 function quizGameplay() {
     questionScreen.classList.toggle("hide");
-    renderChoices(questionNum);
+    renderChoices();
     // answerEl.addEventListener("click", answerCompare);       
 }
 
     // remember to add questionNum args to function and for answerChoices [index]
-function renderChoices(questionNum) {
+function renderChoices() {
         for (const key in answerChoices) {
+            const questch = questions[questionNum];
             const choice = answerChoices[questionNum];
-            // console.log(choice[key]); 
-            var answerEl = document.createElement("button");
+            // console.log(choice[key]);
+            questionEl.textContent = questch;
+            answerEl = document.createElement("button");
             answerEl.textContent = choice[key];
             choices.appendChild(answerEl);
             console.log(answerEl);
@@ -35,9 +39,13 @@ function renderChoices(questionNum) {
         
 function answerCompare(key) {
     if (condition) {
-        
+
     }
+
+    questionNum++;
+    // renderChoices();
 }
+
 
 
  
