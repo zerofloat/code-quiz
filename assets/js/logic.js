@@ -5,6 +5,10 @@ var questionScreen = document.getElementById("questions");
 var startButton = document.getElementById("start");
 var choices = document.getElementById("choices");
 var questionEl = document.getElementById("question-title");
+var countdown = 75;
+// https://stackoverflow.com/questions/9419263/how-to-play-audio
+var correctSound = new Audio("assets/sfx/correct.wav");
+var falseSound = new Audio("assets/sfx/incorrect.wav");
 // var answerButtons = document.querySelectorAll("c");
 
 // placeholders:
@@ -16,10 +20,6 @@ function startQuiz() {
     quizGameplay();
 }
 
-
-
-
-
 // // https://byby.dev/js-add-event-listener
 //     answerButtons.forEach(function(button) {
 //         button.addEventListener("click", function() {
@@ -28,14 +28,9 @@ function startQuiz() {
 //   });
 // });
 
-
-
 // answerButtons.forEach(function(button){
         // button.addEventListener("click", )
     // answerButtons.addEventListener("click", answerCompare);       
-
-
-
 
     // use questionNum counter to increment functions
 function renderChoices() {
@@ -47,7 +42,7 @@ function renderChoices() {
             answerEl = document.createElement("button");
             answerEl.textContent = choice[key];
             choices.appendChild(answerEl);
-            // console.log(answerEl);
+            console.log(answerEl);
             }
 }
 
@@ -60,21 +55,29 @@ function quizGameplay() {
     choices.addEventListener("click", function(event) {
         const answerBtn = event.target.closest("button");
         if (answerBtn.textContent === answersCorrect[questionNum]) {
-            
+            console.log("correct!");
+            correctSound.play();
+        } else {
+            console.log("wrong!");
+            falseSound.play();
+
         }
-    }
-)
+        questionNum ++;
+        console.log(questionNum);
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
+        if (questionNum <= 4 || countdown > 0){
+        renderChoices();
+        } else {
+// https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
+        console.log("test");
+        window.location.href = "../highscores.html"
+        }
+    })
 }
     
 
         
-function answerCompare() {
-    console.log(test);
-    // if (condition) {
-        
-    }
 
-    questionNum++;
     // renderChoices();
 
 

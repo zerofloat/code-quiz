@@ -6,7 +6,7 @@ var questions =  {
     2 : "Arrays in JavaScript can be used to store _____.",
     3 : "String values must be enclosed within _____ when being assigned to variables.",
     4 : "A very useful tool used during development and debugging for printing content to the debugger is:"
-}
+};
 
 var answerChoices = {
     0 : ["strings", "booleans", "alerts", "numbers"],
@@ -14,15 +14,15 @@ var answerChoices = {
     2 : ["numbers and strings", "other arrays", "booleans", "all of the above"],
     3 : ["commas", "curly brackets", "quotes", "parentheses"],
     4 : ["JavaScript", "terminal / bash", "console.log", "for loops"]
-}
+};
 // compare answerChoices value to answersCorrect value for correct / incorrect 
 var answersCorrect = {
-    0 : "alert",
+    0 : "alerts",
     1 : "parentheses",
     2 : "all of the above",
     3 : "quotes",
     4 : "console.log"
-}
+};
 
 
 // var questions = ["Commonly used data types DO NOT include:", "The condition in an if /else statement is enclosed within ____.", "Arrays in JavaScript can be used to store _____.", "String values must be enclosed within _____ when being assigned to variables.", "A very useful tool used during development and debugging for printing content to the debugger is:"];
