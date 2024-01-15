@@ -15,3 +15,11 @@ var answerChoices = {
     3 : ["commas", "curly brackets", "quotes", "parentheses"],
     4 : ["JavaScript", "terminal / bash", "console.log", "for loops"]
 }
+// compare answerChoices value to answersCorrect value for correct / incorrect 
+var answersCorrect = {
+    0 : "alert",
+    1 : "parentheses",
+    2 : "all of the above",
+    3 : "quotes",
+    4 : "console.log"
+}
