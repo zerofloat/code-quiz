@@ -5,6 +5,7 @@ var questionScreen = document.getElementById("questions");
 var startButton = document.getElementById("start");
 var choices = document.getElementById("choices");
 var questionEl = document.getElementById("question-title");
+var timerEl = document.getElementsByClassName("timer").firstChild; 
 var answerReplace = "";
 var countdown = 75;
 // https://stackoverflow.com/questions/9419263/how-to-play-audio
@@ -21,6 +22,13 @@ var feedbackEl = document.getElementById("feedback");
 function startQuiz() {
     startScreen.classList.replace("start", "hide");
     quizGameplay();
+}
+
+function countdownTimer() {
+    var countdownInterval = setInterval(function(){
+        countdown--;
+    }, 1000);
+    
 }
 
 // // https://byby.dev/js-add-event-listener 
@@ -44,10 +52,6 @@ function renderChoices() {
             // console.log(answerEl);
 }
 
-
-
-
-
 function quizGameplay() {
     questionScreen.classList.toggle("hide");
     feedbackEl.classList.toggle("hide");
@@ -57,23 +61,21 @@ function quizGameplay() {
     choices.addEventListener("click", function(event) {
         const answerBtn = event.target.closest("button");
         if (answerBtn.textContent === answersCorrect[questionNum]) {
-            // console.log("correct!");
             feedbackEl.textContent = "Correct!";
             console.log(feedbackEl);
             correctSound.play();
         } else {
-            // console.log("wrong!");
             feedbackEl.textContent = "Wrong!";
             console.log(feedbackEl);
             falseSound.play();
         }
         questionNum ++;
-        // console.log(questionNum);
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
-        if (questionNum <= 4){
+        if (questionNum <= 4 || countdown > 0){
             // || countdown > 0
         renderChoices();
         } else {
+            clearInterval(countdownInterval)
 // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
         // console.log("end of Qs");
         window.location.href = "../highscores.html"
@@ -98,6 +100,12 @@ function quizGameplay() {
             
 
 
+// https://stackoverflow.com/questions/25028853/addeventlistener-two-functions
 
-startButton.addEventListener("click", startQuiz);
+startButton.addEventListener("click", () => {
+    startQuiz();
+    countdownTimer();
+})
+
+// startButton.addEventListener("click", startQuiz, countdownTimer);
 
