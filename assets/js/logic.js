@@ -5,9 +5,9 @@ var questionScreen = document.getElementById("questions");
 var startButton = document.getElementById("start");
 var choices = document.getElementById("choices");
 var questionEl = document.getElementById("question-title");
-var timerEl = document.getElementsByClassName("timer").firstChild; 
+var timerEl = document.getElementById("time");
 var answerReplace = "";
-var countdown = 75;
+var countdown = 5;
 // https://stackoverflow.com/questions/9419263/how-to-play-audio
 var correctSound = new Audio("assets/sfx/correct.wav");
 var falseSound = new Audio("assets/sfx/incorrect.wav");
@@ -25,10 +25,25 @@ function startQuiz() {
 }
 
 function countdownTimer() {
+    countdown = 10;
     var countdownInterval = setInterval(function(){
-        countdown--;
+        if (countdown > 0) {
+            countdown--;
+            timerEl.textContent = countdown;
+            console.log(countdown);
+        } else {
+            timerEl.textContent = countdown;
+            clearInterval(countdownInterval);
+            window.location.href = "../highscores.html";
+        }
+        console.log(countdown);
     }, 1000);
     
+}
+
+if (countdown === 0) {
+    console.log("Ding Ding Ding!");
+    clearInterval(countdownInterval);
 }
 
 // // https://byby.dev/js-add-event-listener 
@@ -65,24 +80,24 @@ function quizGameplay() {
             console.log(feedbackEl);
             correctSound.play();
         } else {
+            countdown - 10;
+            console.log(countdown);
             feedbackEl.textContent = "Wrong!";
             console.log(feedbackEl);
             falseSound.play();
         }
         questionNum ++;
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
-        if (questionNum <= 4 || countdown > 0){
-            // || countdown > 0
+        if (questionNum <= 4){
         renderChoices();
         } else {
-            clearInterval(countdownInterval)
+        clearInterval(countdownInterval);
 // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
-        // console.log("end of Qs");
         window.location.href = "../highscores.html"
         }
-    })
-}
-    
+    })}
+
+
 
         
 
@@ -108,4 +123,3 @@ startButton.addEventListener("click", () => {
 })
 
 // startButton.addEventListener("click", startQuiz, countdownTimer);
-
