@@ -8,6 +8,7 @@ var questionEl = document.getElementById("question-title");
 var timerEl = document.getElementById("time");
 var answerReplace = "";
 var countdown = 5;
+var wrongBool = false;
 // https://stackoverflow.com/questions/9419263/how-to-play-audio
 var correctSound = new Audio("assets/sfx/correct.wav");
 var falseSound = new Audio("assets/sfx/incorrect.wav");
@@ -41,14 +42,11 @@ function countdownTimer() {
     
 }
 
-if (countdown === 0) {
-    console.log("Ding Ding Ding!");
-    clearInterval(countdownInterval);
-}
 
 // // https://byby.dev/js-add-event-listener 
 
 function renderChoices() {
+        wrongBool = false;
         if (questionNum > 0) {
             for (let i = 0; i < (5); i++) {
                 choices.removeChild(choices.firstChild)
@@ -80,7 +78,7 @@ function quizGameplay() {
             console.log(feedbackEl);
             correctSound.play();
         } else {
-            countdown - 10;
+            wrongBool = true;
             console.log(countdown);
             feedbackEl.textContent = "Wrong!";
             console.log(feedbackEl);
