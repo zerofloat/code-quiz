@@ -16,6 +16,7 @@ var falseSound = new Audio("assets/sfx/incorrect.wav");
 var answerEl = "";
 // questionNum is incremented to progress each function through the question/answer objs
 var questionNum = 0;
+var feedbackEl = document.getElementById("feedback");
 
 function startQuiz() {
     startScreen.classList.replace("start", "hide");
@@ -28,7 +29,7 @@ function renderChoices() {
         if (questionNum > 0) {
             for (let i = 0; i < (5); i++) {
                 choices.removeChild(choices.firstChild)
-                console.log(choices);
+                // console.log(choices);
             }
         }  
         for (const key in answerChoices) {
@@ -40,7 +41,7 @@ function renderChoices() {
             answerEl.textContent = choice[key];
             choices.appendChild(answerEl);
             }
-            console.log(answerEl);
+            // console.log(answerEl);
 }
 
 
@@ -49,28 +50,32 @@ function renderChoices() {
 
 function quizGameplay() {
     questionScreen.classList.toggle("hide");
+    feedbackEl.classList.toggle("hide");
     renderChoices();
 // https://blog.bitsrc.io/cleaner-code-with-event-delegation-in-javascript-bb6dd27be64d
 // https://stackoverflow.com/questions/73593129/js-extract-button-text-content-on-click
     choices.addEventListener("click", function(event) {
         const answerBtn = event.target.closest("button");
         if (answerBtn.textContent === answersCorrect[questionNum]) {
-            console.log("correct!");
+            // console.log("correct!");
+            feedbackEl.textContent = "Correct!";
+            console.log(feedbackEl);
             correctSound.play();
         } else {
-            console.log("wrong!");
+            // console.log("wrong!");
+            feedbackEl.textContent = "Wrong!";
+            console.log(feedbackEl);
             falseSound.play();
-
         }
         questionNum ++;
-        console.log(questionNum);
+        // console.log(questionNum);
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
         if (questionNum <= 4){
             // || countdown > 0
         renderChoices();
         } else {
 // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
-        console.log("end of Qs");
+        // console.log("end of Qs");
         window.location.href = "../highscores.html"
         }
     })
