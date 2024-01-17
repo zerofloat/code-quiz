@@ -7,8 +7,9 @@ var choices = document.getElementById("choices");
 var questionEl = document.getElementById("question-title");
 var timerEl = document.getElementById("time");
 var answerReplace = "";
-var countdown = 40;
+var countdown = 75;
 var wrongBool = false;
+var wrongCount = 0;
 // https://stackoverflow.com/questions/9419263/how-to-play-audio
 var correctSound = new Audio("assets/sfx/correct.wav");
 var falseSound = new Audio("assets/sfx/incorrect.wav");
@@ -81,20 +82,22 @@ function quizGameplay() {
             correctSound.play();
         } else {
             wrongBool = true;
+            wrongCount ++;
+            console.log(`${wrongCount} wrong answers!`);
             console.log(wrongBool);
             feedbackEl.textContent = "Wrong!";
             console.log(feedbackEl);
             falseSound.play();
-            countdown - 1000;
         }
         questionNum ++;
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
-        if (questionNum <= 4){
+        if (questionNum <= 4 && wrongCount < 5){
         renderChoices();
-        } else {
+        }
+        else {
+        window.location.href = "../highscores.html";
         clearInterval(countdownInterval);
 // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
-        window.location.href = "../highscores.html"
         }
     })}
 
