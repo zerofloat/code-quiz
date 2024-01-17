@@ -32,18 +32,17 @@ function countdownTimer() {
         if (countdown > 0 && wrongCount < 5 && wrongBool === false) {
             countdown--;
             timerEl.textContent = countdown;
-            console.log(countdown);
-        } else if (countdown > 0 && wrongCount < 5 && wrongBool === true) {
+            if (questionNum >= 4) {
+                console.log("end of da game");
+                clearInterval(countdownInterval);
+                timerEl.textContent = countdown;
+        }} else if (countdown > 0 && wrongCount < 5 && wrongBool === true) {
             countdown -= 10;
             timerEl.textContent = countdown;
-            console.log(countdown);
             wrongBool = !wrongBool;
-        } else {
-            clearInterval(countdownInterval);
-            timerEl.textContent = countdown;
-        };
-    }, 1000);
-}
+        }}
+    , 1000)};
+
 
 
 
@@ -51,7 +50,7 @@ function countdownTimer() {
 
 function renderChoices() {
         if (questionNum > 0) {
-            for (let i = 0; i < (5); i++) {
+            for (let i = 0; i < 5; i++) {
                 choices.removeChild(choices.firstChild)
             }
         }  
@@ -76,15 +75,11 @@ function quizGameplay() {
         const answerBtn = event.target.closest("button");
         if (answerBtn.textContent === answersCorrect[questionNum]) {
             feedbackEl.textContent = "Correct!";
-            console.log(feedbackEl);
             correctSound.play();
         } else {
             wrongBool = true;
             wrongCount ++;
-            console.log(`${wrongCount} wrong answers!`);
-            console.log(wrongBool);
             feedbackEl.textContent = "Wrong!";
-            console.log(feedbackEl);
             falseSound.play();
         }
         questionNum ++;
