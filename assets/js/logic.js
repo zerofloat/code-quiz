@@ -6,6 +6,7 @@ var startButton = document.getElementById("start");
 var choices = document.getElementById("choices");
 var questionEl = document.getElementById("question-title");
 var timerEl = document.getElementById("time");
+var endEl = document.getElementById("end-screen");
 var answerReplace = "";
 var countdown = 75;
 var wrongBool = false;
@@ -28,19 +29,18 @@ function startQuiz() {
 
 function countdownTimer() {
     var countdownInterval = setInterval(function(){
-        if (countdown > 0 && wrongBool === false) {
+        if (countdown > 0 && wrongCount < 5 && wrongBool === false) {
             countdown--;
             timerEl.textContent = countdown;
             console.log(countdown);
-        } else if (countdown > 0 && wrongBool === true) {
+        } else if (countdown > 0 && wrongCount < 5 && wrongBool === true) {
             countdown -= 10;
             timerEl.textContent = countdown;
             console.log(countdown);
             wrongBool = !wrongBool;
         } else {
-            timerEl.textContent = countdown;
             clearInterval(countdownInterval);
-            window.location.href = "../highscores.html";
+            timerEl.textContent = countdown;
         };
     }, 1000);
 }
@@ -95,11 +95,17 @@ function quizGameplay() {
         renderChoices();
         }
         else {
-        window.location.href = "../highscores.html";
-        clearInterval(countdownInterval);
+        endScore();
 // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
         }
     })}
+
+function endScore() {
+    questionEl.classList.toggle("hide");
+    choices.classList.toggle("hide")
+    endEl.classList.toggle("hide");
+
+}
 
 
 
