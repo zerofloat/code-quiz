@@ -7,6 +7,7 @@ var choices = document.getElementById("choices");
 var questionEl = document.getElementById("question-title");
 var timerEl = document.getElementById("time");
 var endEl = document.getElementById("end-screen");
+var finalScore = document.getElementById("final-score");
 var answerReplace = "";
 var countdown = 75;
 var wrongBool = false;
@@ -104,6 +105,7 @@ function endScore() {
     questionEl.classList.toggle("hide");
     choices.classList.toggle("hide")
     endEl.classList.toggle("hide");
+    finalScore.textContent = countdown;
 
 }
 
