@@ -15,7 +15,6 @@ var wrongCount = 0;
 // https://stackoverflow.com/questions/9419263/how-to-play-audio
 var correctSound = new Audio("assets/sfx/correct.wav");
 var falseSound = new Audio("assets/sfx/incorrect.wav");
-// var answerButtons = document.querySelectorAll("c");
 
 // placeholders:
 var answerEl = "";
@@ -54,19 +53,16 @@ function renderChoices() {
         if (questionNum > 0) {
             for (let i = 0; i < (5); i++) {
                 choices.removeChild(choices.firstChild)
-                // console.log(choices);
             }
         }  
         for (const key in answerChoices) {
             const questch = questions[questionNum];
             const choice = answerChoices[questionNum];
-            // console.log(choice[key]);
             questionEl.textContent = questch;
             answerEl = document.createElement("button");
             answerEl.textContent = choice[key];
             choices.appendChild(answerEl);
             }
-            // console.log(answerEl);
 }
 
 function quizGameplay() {
@@ -74,6 +70,7 @@ function quizGameplay() {
     feedbackEl.classList.toggle("hide");
     renderChoices();
 // https://blog.bitsrc.io/cleaner-code-with-event-delegation-in-javascript-bb6dd27be64d
+
 // https://stackoverflow.com/questions/73593129/js-extract-button-text-content-on-click
     choices.addEventListener("click", function(event) {
         const answerBtn = event.target.closest("button");
@@ -109,29 +106,9 @@ function endScore() {
 
 }
 
-
-
-        
-
-    // renderChoices();
-
-
-
-
- 
-        
-        // const choices = document.getElementById("choices");
-        // const answerEl = document.createElement("li");
-        // answerEl.textContent = choice;
-
-            
-
-
 // https://stackoverflow.com/questions/25028853/addeventlistener-two-functions
 
 startButton.addEventListener("click", () => {
     startQuiz();
     countdownTimer();
 })
-
-// startButton.addEventListener("click", startQuiz, countdownTimer);
