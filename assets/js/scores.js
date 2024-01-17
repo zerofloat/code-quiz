@@ -6,7 +6,8 @@ var score = initialsInput.value.trim();
 function renderHighScores() {
 // highScoresList.innerHTML = "";
 var scoreLi = document.createElement("li");
-scoreLi.textContent = score
+scoreLi.textContent = score;
+
 
 
 }
