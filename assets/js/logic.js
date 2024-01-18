@@ -33,7 +33,6 @@ function countdownTimer() {
             countdown--;
             timerEl.textContent = countdown;
             if (questionNum >= 4) {
-                console.log("end of da game");
                 clearInterval(countdownInterval);
                 timerEl.textContent = countdown;
         }} else if (countdown > 0 && wrongCount < 5 && wrongBool === true) {
