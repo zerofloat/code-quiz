@@ -2,7 +2,7 @@
 
 This repository features a coding quiz which makes use of DOM manipulation, event listeners, setInterval and conditionals to progress through the questions. Scores are then stored in localStorage.
 
-![screenshot of code quiz first page](assets/code-quiz-screenshot.png)
+![screenshot of code quiz first page](./assets/code-quiz-screenshot.png)
 
 ## Installation
 
