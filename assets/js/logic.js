@@ -43,10 +43,7 @@ function countdownTimer() {
     , 1000)};
 
 
-
-
-// // https://byby.dev/js-add-event-listener 
-
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
 function renderChoices() {
         if (questionNum > 0) {
             for (let i = 0; i < 5; i++) {
@@ -82,7 +79,7 @@ function quizGameplay() {
             falseSound.play();
         }
         questionNum ++;
-// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild_while
+
         if (questionNum <= 4 && wrongCount < 5){
         renderChoices();
         }
