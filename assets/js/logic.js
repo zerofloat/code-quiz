@@ -32,7 +32,7 @@ function countdownTimer() {
         if (countdown > 0 && wrongCount < 5 && wrongBool === false) {
             countdown--;
             timerEl.textContent = countdown;
-            if (questionNum >= 4) {
+            if (questionNum > 4) {
                 clearInterval(countdownInterval);
                 timerEl.textContent = countdown;
         }} else if (countdown > 0 && wrongCount < 5 && wrongBool === true) {
