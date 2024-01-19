@@ -3,7 +3,6 @@ var highScoresList = document.getElementById("highscores");
 var highScoreObj = {};
 var scoreLi = "";
 var scores = [];
-var submitButton = document.getElementById("submit");
 var clearButton = document.getElementById("clear");
 
 //initialize function
@@ -15,37 +14,69 @@ function init() {
         scores = storedScores;
     }
 }
-
-
-
-
-
-
-
-submitButton.addEventListener("click", function(event) {
-    event.preventDefault();
-
-    var score = initialsInput.value.trim();
-// https://www.freecodecamp.org/news/how-to-store-objects-or-arrays-in-browser-local-storage/
-    highScoreObj = {
-        initials: score,
-        high_score: countdown
+// https://stackoverflow.com/questions/26107125/cannot-read-property-addeventlistener-of-null
+window.addEventListener("DOMContentLoaded", (event)  => {
+    var submitButton = document.getElementById("submit");
+    if (submitButton) {
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            var score = initialsInput.value.trim();
+            highScoreObj = {
+                initials: score,
+                high_score: countdown
+            }
+        
+            var stringifiedScore = JSON.stringify(highScoreObj);
+        
+            scores.push(stringifiedScore);
+        
+            localStorage.setItem("score", stringifiedScore);
+            
+        })
     }
+    
+})
 
-    var stringifiedScore = JSON.stringify(highScoreObj);
+window.addEventListener("DOMContentLoaded", (event) => {
+    var clearButton = document.getElementById("clear");
+    if (clearButton) {
+        clearButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            localStorage.clear();
+        })
+    }
+})
 
-    scores.push(stringifiedScore);
+// clearButton.addEventListener("click", function(event) {
+//     localStorage.removeItem(highScoreObj);     
+// })
 
-    localStorage.setItem("score", stringifiedScore);
+
+
+
+
+// submitButton.addEventListener("click", function(event) {
+//     event.preventDefault();
+
+//     var score = initialsInput.value.trim();
+// // https://www.freecodecamp.org/news/how-to-store-objects-or-arrays-in-browser-local-storage/
+//     highScoreObj = {
+//         initials: score,
+//         high_score: countdown
+//     }
+
+//     var stringifiedScore = JSON.stringify(highScoreObj);
+
+//     scores.push(stringifiedScore);
+
+//     localStorage.setItem("score", stringifiedScore);
 
     // localStorage.setItem("score", score);
 
     // localStorage.setItem("score", JSON.stringify(score));
-})
-
-// clearButton.addEventListener("click", function(event) {
-//     event.preventDefault();   
 // })
+
+
 
 
 // function renderHighScores() {
