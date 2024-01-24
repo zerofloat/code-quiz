@@ -18,17 +18,18 @@ window.addEventListener("DOMContentLoaded", (event)  => {
                 initials: score,
                 high_score: countdown
             }
-            var newScore = { initials, countdown };
-            var stringifiedScore = JSON.stringify(highScoreObj);
+// help from Mija TA - lines 22 - 28
+           var highScores = JSON.parse(localStorage.getItem('scores')) || [];
+           highScores.push(highScoreObj); 
+           localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
+            // var newScore = { initials, countdown };
         
-            scores.push(newScore);
-        
-            localStorage.setItem("score", stringifiedScore);
+   
+            submitButton.setAttribute('disabled', true);
             
         })
     }
 });
-submitButton.setAttribute('disabled', true);
 //clear highscores
 window.addEventListener("DOMContentLoaded", (event) => {
     var clearButton = document.getElementById("clear");
