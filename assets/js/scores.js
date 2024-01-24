@@ -2,7 +2,7 @@ var initialsInput = document.getElementById("initials");
 var highScoresList = document.getElementById("highscores");
 var highScoreObj = {};
 var scoreLi = "";
-var scores = [];
+// var scores = [];
 var clearButton = document.getElementById("clear");
 var submitButton = document.getElementById("submit");
 
@@ -18,15 +18,11 @@ window.addEventListener("DOMContentLoaded", (event)  => {
                 initials: score,
                 high_score: countdown
             }
-// help from Mija TA - lines 22 - 28
-           var highScores = JSON.parse(localStorage.getItem('scores')) || [];
-           highScores.push(highScoreObj); 
-           localStorage.setItem("highScoreObj", JSON.stringify(highScoreObj));
-            // var newScore = { initials, countdown };
-        
-   
-            submitButton.setAttribute('disabled', true);
-            
+// help from Mija TA - lines 22 - 26
+           var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+           highscores.push(highScoreObj); 
+           localStorage.setItem('highscores', JSON.stringify(highscores));
+           window.location.href = 'highscores.html';``
         })
     }
 });
