@@ -4,12 +4,12 @@ var highScoreObj = {};
 var scoreLi = "";
 var scores = [];
 var clearButton = document.getElementById("clear");
+var submitButton = document.getElementById("submit");
 
 
 // https://stackoverflow.com/questions/26107125/cannot-read-property-addeventlistener-of-null
 //submit highscore
 window.addEventListener("DOMContentLoaded", (event)  => {
-    var submitButton = document.getElementById("submit");
     if (submitButton) {
         submitButton.addEventListener('click', function (event) {
             event.preventDefault();
@@ -27,8 +27,8 @@ window.addEventListener("DOMContentLoaded", (event)  => {
             
         })
     }
-    
-})
+});
+submitButton.setAttribute('disabled', true);
 //clear highscores
 window.addEventListener("DOMContentLoaded", (event) => {
     var clearButton = document.getElementById("clear");
